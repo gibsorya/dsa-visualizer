@@ -1,0 +1,22 @@
+.playground {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.code-editor {
+  /* padding: 1rem 0; */
+}
+
+.run-button {
+    background-color: brown;
+    border-radius: 2px;
+    width: fit-content;
+
+    &:hover {
+        border-color: transparent;
+        background-color: darkred;
+    }
+}
