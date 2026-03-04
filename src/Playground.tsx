@@ -2,8 +2,10 @@ import Editor,  { type Monaco} from "@monaco-editor/react"
 import { editor } from "monaco-editor";
 import "./playground.css"
 import { useRef } from "react";
+import TypeScriptAdapter from "./utils/TypeScriptAdapter";
 
 function Playground() {
+    const TSAnalyzer = new TypeScriptAdapter();
     const options = {
         minimap: {
             enabled: false
@@ -19,7 +21,11 @@ function Playground() {
     const handleRunCode = () => {
         const code = editorRef.current!.getValue();
 
-        console.log(code)
+        TSAnalyzer.compile(code).then(compiledCode => {
+            TSAnalyzer.execute(compiledCode);
+        }).catch(err => {
+            console.error("Compilation error:", err);
+        });
     }
 
     return (
